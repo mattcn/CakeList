@@ -9,6 +9,8 @@
 #import "MasterViewController.h"
 #import "CakeCell.h"
 
+#import "constant.h"
+
 @interface MasterViewController ()
 @property (strong, nonatomic) NSArray *objects;
 @end
@@ -51,20 +53,22 @@
 
 - (void)getData{
     
-    NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
+    NSURL *url = [NSURL URLWithString:kCakeListURL];
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSError *jsonError;
-    id responseData = [NSJSONSerialization
-                       JSONObjectWithData:data
-                       options:kNilOptions
-                       error:&jsonError];
-    if (!jsonError){
-        self.objects = responseData;
-        [self.tableView reloadData];
-    } else {
-    }
+    NSURLRequest* fetchRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:fetchRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                               NSError* parseError = nil;
+                               NSArray* rawList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                               
+                               for (NSDictionary* cake in rawList) {
+                                   //TODO: put the cake data into a contianer.
+                               }
+                               
+                               // update the table view
+                               [self.tableView reloadData];
+                           }];
     
 }
 
