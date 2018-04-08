@@ -8,17 +8,21 @@
 
 #import "MasterViewController.h"
 #import "CakeCell.h"
+#import "CLCake.h"
 
 #import "constant.h"
 
 @interface MasterViewController ()
-@property (strong, nonatomic) NSArray *objects;
+@property (strong, nonatomic) NSMutableArray* cakeList;
 @end
 
 @implementation MasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _cakeList = [NSMutableArray array];
+    
     [self getData];
 }
 
@@ -28,21 +32,24 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return self.cakeList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
     
-    NSDictionary *object = self.objects[indexPath.row];
-    cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = object[@"desc"];
+    CLCake *t_cake = self.cakeList[indexPath.row];
+    
+    cell.titleLabel.text = t_cake.title;
+    cell.descriptionLabel.text = t_cake.desc;
  
-    
+    /*
+     // TODO: lazy loading img
     NSURL *aURL = [NSURL URLWithString:object[@"image"]];
     NSData *data = [NSData dataWithContentsOfURL:aURL];
     UIImage *image = [UIImage imageWithData:data];
     [cell.cakeImageView setImage:image];
+     */
     
     return cell;
 }
@@ -63,7 +70,10 @@
                                NSArray* rawList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
                                
                                for (NSDictionary* cake in rawList) {
-                                   //TODO: put the cake data into a contianer.
+                                   CLCake* cakeObj = [CLCake createWithTitle:cake[@"title"]
+                                                                 Description:cake[@"desc"]
+                                                                    andImage:cake[@"image"]];
+                                   [_cakeList addObject:cakeObj];
                                }
                                
                                // update the table view
