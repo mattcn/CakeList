@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "CakeCell.h"
 #import "CLCake.h"
+#import "UIImage+ImageCache.h"
 
 #import "constant.h"
 
@@ -43,13 +44,13 @@
     cell.titleLabel.text = t_cake.title;
     cell.descriptionLabel.text = t_cake.desc;
  
-    /*
-     // TODO: lazy loading img
-    NSURL *aURL = [NSURL URLWithString:object[@"image"]];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-    UIImage *image = [UIImage imageWithData:data];
-    [cell.cakeImageView setImage:image];
-     */
+    // lazy loading:
+    UIImage* img = [UIImage cachedImageByURLStr:t_cake.imageStr];
+    if(img){
+        cell.cakeImageView.image = img;
+    }else {
+        // async download the image and store it in cache, update the UI in the main thread.
+    }
     
     return cell;
 }

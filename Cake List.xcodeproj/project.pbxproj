@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C9886281207A648A000326EC /* CLCake.m in Sources */ = {isa = PBXBuildFile; fileRef = C9886280207A648A000326EC /* CLCake.m */; };
 		C9886282207A648A000326EC /* CLCake.m in Sources */ = {isa = PBXBuildFile; fileRef = C9886280207A648A000326EC /* CLCake.m */; };
+		C9886287207A6CA9000326EC /* UIImage+ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9886286207A6CA9000326EC /* UIImage+ImageCache.m */; };
+		C9886288207A6CA9000326EC /* UIImage+ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C9886286207A6CA9000326EC /* UIImage+ImageCache.m */; };
 		DBF17A171B0B648F004E6311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A161B0B648F004E6311 /* main.m */; };
 		DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A191B0B648F004E6311 /* AppDelegate.m */; };
 		DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A1C1B0B648F004E6311 /* MasterViewController.m */; };
@@ -33,6 +35,8 @@
 		C988627D207A622E000326EC /* constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constant.h; sourceTree = "<group>"; };
 		C988627F207A648A000326EC /* CLCake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCake.h; sourceTree = "<group>"; };
 		C9886280207A648A000326EC /* CLCake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLCake.m; sourceTree = "<group>"; };
+		C9886285207A6CA9000326EC /* UIImage+ImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageCache.h"; sourceTree = "<group>"; };
+		C9886286207A6CA9000326EC /* UIImage+ImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageCache.m"; sourceTree = "<group>"; };
 		DBF17A111B0B648F004E6311 /* Cake List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cake List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A151B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF17A161B0B648F004E6311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -77,6 +81,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C9886284207A6C91000326EC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C9886285207A6CA9000326EC /* UIImage+ImageCache.h */,
+				C9886286207A6CA9000326EC /* UIImage+ImageCache.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		DBF17A081B0B648F004E6311 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +111,7 @@
 		DBF17A131B0B648F004E6311 /* Cake List */ = {
 			isa = PBXGroup;
 			children = (
+				C9886284207A6C91000326EC /* Category */,
 				C988627E207A6465000326EC /* Model */,
 				DBF17A181B0B648F004E6311 /* AppDelegate.h */,
 				DBF17A191B0B648F004E6311 /* AppDelegate.m */,
@@ -258,6 +272,7 @@
 			files = (
 				DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */,
 				C9886281207A648A000326EC /* CLCake.m in Sources */,
+				C9886287207A6CA9000326EC /* UIImage+ImageCache.m in Sources */,
 				DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */,
 				DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */,
 				DBF17A171B0B648F004E6311 /* main.m in Sources */,
@@ -270,6 +285,7 @@
 			files = (
 				C9886282207A648A000326EC /* CLCake.m in Sources */,
 				DBF17A341B0B648F004E6311 /* Cake_ListTests.m in Sources */,
+				C9886288207A6CA9000326EC /* UIImage+ImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
