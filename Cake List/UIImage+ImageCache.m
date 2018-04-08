@@ -16,7 +16,7 @@
 static NSCache* cachedImages;
 
 +(void) useImageCache{
-    
+    // due to time limiation, only for the memory cache by using NSCache, no disk cache etc.
     cachedImages = [[NSCache alloc] init];
     
     NSURLCache *urlCache = [[NSURLCache alloc] initWithMemoryCapacity:kCacheMemoryCapacity

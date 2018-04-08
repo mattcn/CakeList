@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // init Image Cache:
+    [UIImage useImageCache];
+    
     _cakeList = [NSMutableArray array];
     
     [self getData];
@@ -50,6 +53,17 @@
         cell.cakeImageView.image = img;
     }else {
         // async download the image and store it in cache, update the UI in the main thread.
+        NSURL* url = [NSURL URLWithString:t_cake.imageStr];
+        NSURLSessionDownloadTask* downloadImgTask = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            UIImage* downloadedImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+            [UIImage setCacheImage:downloadedImg withURLStr:t_cake.imageStr];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.cakeImageView.image = downloadedImg;
+            });
+        }];
+        
+        [downloadImgTask resume];
     }
     
     return cell;
