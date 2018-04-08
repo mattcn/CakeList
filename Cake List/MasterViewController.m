@@ -15,6 +15,8 @@
 
 @interface MasterViewController ()
 @property (strong, nonatomic) NSMutableArray* cakeList;
+@property (strong, nonatomic) UIRefreshControl* refreshCtrl;
+
 @end
 
 @implementation MasterViewController
@@ -26,6 +28,11 @@
     [UIImage useImageCache];
     
     _cakeList = [NSMutableArray array];
+    
+    // init refersh controller
+    self.refreshCtrl = [[UIRefreshControl alloc] init];
+    [_refreshCtrl addTarget:self action:@selector(getData) forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:_refreshCtrl];
     
     [self getData];
 }
@@ -93,6 +100,7 @@
                                
                                // update the table view
                                [self.tableView reloadData];
+                               [self.refreshCtrl endRefreshing];
                            }];
     
 }
